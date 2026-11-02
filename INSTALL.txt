@@ -1,0 +1,2 @@
+CHESS STUDIO — BALANCED COLUMNS
+Extract all contents directly into public_html/apps/chess/ and overwrite existing files including index.html and css. Press Ctrl+F5. Desktop board maximum is now 480px (80% of the previous 600px), centred between wider sidebars. Mobile layout stays responsive. Four modes remain in the left column; Puzzles remains unavailable.

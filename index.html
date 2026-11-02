@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+
+<html lang="en-GB">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async="" data-consent-required="true" src="https://www.googletagmanager.com/gtag/js?id=G-RQ0DX941PE" type="text/plain"></script>
+<script data-consent-required="true" type="text/plain">
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-RQ0DX941PE');
+</script>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<meta content="Play Stockfish, challenge a friend and explore chess on Jenga Code." name="description"/>
+<title>Chess Engine | Jenga Code</title>
+<link href="images/KingB.png" rel="icon"/>
+<link href="https://jenga-code.com/apps/chess/" rel="canonical"/>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "Chess Engine | Jenga Code", "isPartOf": {"@type": "WebSite", "name": "Jenga Code", "url": "https://jenga-code.com/"}, "publisher": {"@type": "Person", "name": "George Miller", "url": "https://jenga-code.com/"}}</script>
+<meta content="#f4e6cc" name="theme-color"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&amp;family=DM+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="css/style.css?v=copper-1" rel="stylesheet"/>
+<link href="css/chess-map-edition.css?v=20261022-5" rel="stylesheet"/>
+</head>
+<body class="jc-redesign jc-type-games jc-app-chess" data-art-layout="folio" data-publisher="true" id="top">
+<a class="skip-link" href="#main">Skip to content</a>
+<!-- =========================================================
+             HEADER — MATCHES MAIN JENGA CODE WEBSITE
+        ========================================================= -->
+<header class="copper-header"><a aria-label="Jenga-Code homepage" class="copper-brand" href="/"><svg aria-hidden="true" class="compass-mark" height="54" viewbox="0 0 64 64" width="54"><circle cx="32" cy="32" fill="none" r="23" stroke="currentColor" stroke-width="1"></circle><path d="M32 2 38 26 62 32 38 38 32 62 26 38 2 32 26 26Z" fill="none" stroke="currentColor"></path><path d="M32 7 32 32 26 26ZM57 32 32 32 38 26ZM32 57 32 32 38 38ZM7 32 32 32 26 38Z" fill="currentColor"></path><circle cx="32" cy="32" fill="currentColor" r="3"></circle></svg><span>Jenga-Code<small>ALGORITHMS · GAMES · MATHEMATICAL IDEAS</small></span></a><nav aria-label="Main navigation"><a href="/">Home</a><a aria-current="page" href="/apps/">Applications</a><a href="https://jenga-code.com/blog/">Journal</a><a href="/qualifications/">Qualifications</a></nav></header><main class="page-shell" id="main" tabindex="-1">
+<section aria-label="Chess studio" class="studio" id="play">
+<div class="studio-nav"><div class="studio-heading"><h1>Chess Studio</h1></div>
+
+</div>
+<div class="arena">
+<aside class="game-info"><div aria-label="Game mode" aria-orientation="vertical" class="mode-tabs" role="tablist">
+<button aria-selected="true" class="active" data-mode="computer" role="tab">
+                            Play computer
+                        </button>
+<button aria-selected="false" data-mode="online" role="tab">
+                            Challenge a friend
+                        </button>
+<button aria-selected="false" data-mode="local" role="tab">
+                            Over the board
+                        </button>
+<button aria-selected="false" data-mode="analysis" role="tab">
+                            Analysis
+                        </button>
+
+</div><img alt="Ivory knight and walnut king with a book, brass dividers and search-tree diagrams" class="chess-editorial-art" height="1050" src="images/chess-study.webp" width="700"/>
+<div class="info-icon">
+<img alt="" src="images/KnightW.png"/>
+</div>
+<p class="eyebrow">JENGA CODE CHESS</p>
+<h2 id="mode-title">Your next move.</h2>
+<span class="short-rule"></span><p id="mode-description">
+                            Play at your pace, or explore a position.
+                        </p>
+<div class="info-rule" hidden=""></div>
+<div class="info-pair" hidden="">
+<span>Variant</span>
+<b>Standard</b>
+</div>
+<div class="info-pair" hidden="">
+<span>Format</span>
+<b id="format-label">Casual · untimed</b>
+</div>
+<div class="info-pair" hidden="">
+<span>Connection</span>
+<b id="connection-label">On your device</b>
+</div>
+<div class="info-note" hidden="">
+                            Click or drag to move.<br/>
+                            Right-drag to draw an arrow.<br/>
+                            Escape clears your selection.
+                        </div>
+</aside>
+<div class="board-column">
+<div class="player-strip" id="top-player">
+<div class="avatar">
+<img alt="" id="top-avatar" src="images/KingB.png"/>
+</div>
+<div class="player-text">
+<strong id="top-name">Stockfish 18</strong>
+<span id="top-detail">Computer opponent</span>
+<div class="captured" id="top-captured"></div>
+</div>
+<div class="clock" id="top-clock">∞</div>
+</div>
+<div class="board-wrap">
+<div aria-label="Position evaluation" class="evaluation" hidden="" id="evaluation">
+<div id="eval-white"></div>
+<span id="eval-number">0.0</span>
+</div>
+<div aria-label="Interactive chessboard" class="chess-board" id="chess-board" role="group"></div>
+</div>
+<div class="player-strip" id="bottom-player">
+<div class="avatar">
+<img alt="" id="bottom-avatar" src="images/KingW.png"/>
+</div>
+<div class="player-text">
+<strong id="bottom-name">You</strong>
+<span id="bottom-detail">White pieces</span>
+<div class="captured" id="bottom-captured"></div>
+</div>
+<div class="clock" id="bottom-clock">∞</div>
+</div>
+<div class="board-toolbar">
+<span id="board-caption">WHITE TO MOVE</span>
+<div>
+<button aria-label="Toggle sounds" aria-pressed="false" id="sound" title="Toggle sounds">
+                                    ♪
+                                </button>
+<button aria-label="Clear arrows" id="clear-arrows" title="Clear arrows">
+                                    ⌫
+                                </button>
+<button aria-label="Flip board" id="flip-board" title="Flip board">
+                                    ⇅
+                                </button>
+<button aria-label="Fullscreen board" id="fullscreen" title="Fullscreen board">
+                                    ⛶
+                                </button>
+<button aria-label="Toggle chess workspace theme" id="theme" title="Toggle chess workspace theme">
+                            ◐
+                        </button><button aria-label="Focus mode" id="focus" title="Focus mode">
+                            ⛶
+                        </button></div>
+</div>
+</div>
+<aside class="side-panel">
+<div class="status-panel">
+<div class="status-top">
+<span class="status-dot"></span>
+<span id="status-label">LET'S PLAY</span>
+<span id="engine-state">STOCKFISH 18</span>
+</div>
+<h2 aria-live="polite" id="game-status">White to move</h2>
+<p id="status-detail">Make your opening move.</p>
+</div>
+<div aria-label="Game panels" class="side-tabs" role="tablist">
+<button aria-selected="true" class="active" data-panel="moves" role="tab">
+                                Moves
+                            </button>
+<button aria-selected="false" data-panel="setup" role="tab">
+                                Game setup
+                            </button>
+<button aria-selected="false" data-panel="tools" role="tab">
+                                Tools
+                            </button>
+</div>
+<div class="panel-content" id="panel-moves">
+<div class="move-head">
+<span>#</span>
+<span>WHITE</span>
+<span>BLACK</span>
+</div>
+<div aria-label="Move history" class="move-history" id="move-history"></div>
+<div class="history-controls">
+<button aria-label="First position" id="history-first">
+                                    |‹
+                                </button>
+<button aria-label="Previous move" id="history-prev">
+                                    ‹
+                                </button>
+<button aria-label="Next move" id="history-next">
+                                    ›
+                                </button>
+<button aria-label="Latest position" id="history-last">
+                                    ›|
+                                </button>
+</div>
+<button class="return-live" hidden="" id="return-live">
+                                Return to live game →
+                            </button>
+<div class="analysis-lines" hidden="" id="analysis-lines"></div>
+<div class="offer-box" hidden="" id="offer-box">
+<p id="offer-text"></p>
+<button class="primary small" id="accept-offer">
+                                    Accept
+                                </button>
+<button class="small" id="decline-offer">
+                                    Decline
+                                </button>
+</div>
+<div class="game-actions">
+<button id="takeback" title="Take back a move">
+                                    ↶ <span>Takeback</span>
+</button>
+<button id="draw">
+                                    ½ <span>Draw</span>
+</button>
+<button id="resign">
+                                    ⚑ <span>Resign</span>
+</button>
+<button id="abort">
+                                    × <span>Abort</span>
+</button>
+</div>
+<button class="primary wide" id="new-game">
+                                New game <span>→</span>
+</button>
+<button class="secondary wide" hidden="" id="analyse-game">
+                                Analyse this game
+                            </button>
+</div>
+<div class="panel-content setup" hidden="" id="panel-setup">
+<label>
+                                Play as
+                                <select id="player-colour">
+<option value="w">White</option>
+<option value="b">Black</option>
+<option value="random">Random colour</option>
+</select>
+</label>
+<fieldset class="time-presets"><legend>Quick clocks</legend>
+<button aria-pressed="false" data-clock="180,0" type="button"><img alt="" height="22" src="images/blitz.svg" width="22"/><strong>3 min</strong><span>Blitz</span></button>
+<button aria-pressed="true" data-clock="600,0" type="button"><img alt="" height="22" src="images/rapid.svg" width="22"/><strong>10 min</strong><span>Rapid</span></button>
+<button aria-pressed="false" data-clock="1800,0" type="button"><img alt="" height="22" src="images/rapid-long.svg" width="22"/><strong>30 min</strong><span>Rapid</span></button>
+</fieldset><p class="preset-note">Time per player. Apply with Start new game.</p>
+<label>
+                                Time control
+                                <select id="time-control">
+<option value="0,0">Untimed</option>
+<option value="60,0">1 + 0 · Bullet</option>
+<option value="180,0">3 + 0 · Blitz</option>
+<option value="180,2">3 + 2 · Blitz</option>
+<option value="300,0">5 + 0 · Blitz</option>
+<option selected="" value="600,0">10 + 0 · Rapid</option>
+<option value="1800,0">30 + 0 · Rapid</option>
+<option value="900,10">15 + 10 · Rapid</option>
+<option value="custom">Custom</option>
+</select>
+</label>
+<div hidden="" id="custom-time">
+<label>
+                                    Minutes
+                                    <input id="custom-minutes" max="180" min="1" type="number" value="10"/>
+</label>
+<label>
+                                    Increment (seconds)
+                                    <input id="custom-increment" max="120" min="0" type="number" value="0"/>
+</label>
+</div>
+<label id="difficulty-label">
+                                Computer strength
+                                <select id="engine-rating">
+<option value="1320">1320 · native target</option>
+<option selected="" value="1600">1600 · native target</option>
+<option value="2000">2000 · native target</option>
+<option value="2400">2400 · native target</option>
+<option value="full">Full strength</option>
+</select>
+</label>
+<p class="micro" id="strength-note">
+                                Stockfish targets are approximate, not a website or FIDE rating.
+                                Supported values update when the engine loads.
+                            </p>
+<button class="primary wide" id="apply-setup">
+                                Start new game →
+                            </button>
+<div class="setting-check">
+<input id="auto-queen" type="checkbox"/>
+<label for="auto-queen">
+                                    Automatically promote to queen
+                                </label>
+</div>
+</div>
+<div class="panel-content setup" hidden="" id="panel-tools">
+<label>
+                                FEN position
+                                <textarea id="fen-input" placeholder="Paste a FEN position" rows="3" spellcheck="false"></textarea>
+</label>
+<div class="button-row">
+<button id="load-fen">Load into analysis</button>
+<button id="copy-fen">Copy FEN</button>
+</div>
+<label>
+                                PGN game
+                                <textarea id="pgn-input" placeholder="Paste a PGN game" rows="4" spellcheck="false"></textarea>
+</label>
+<div class="button-row">
+<button id="load-pgn">Load PGN</button>
+<button id="export-pgn">Download PGN</button>
+</div>
+<label class="file-label">
+                                Or open a PGN file
+                                <input accept=".pgn,.txt" id="pgn-file" type="file"/>
+</label>
+<button class="wide" id="restore-mainline">
+                                Restore original analysis line
+                            </button>
+<button class="wide" id="engine-retry">
+                                Reload Stockfish
+                            </button>
+</div>
+<div class="online-panel" hidden="" id="online-panel">
+<label>
+                                Your name
+                                <input autocomplete="nickname" id="display-name" maxlength="32" value="Guest"/>
+</label>
+<button class="primary wide" id="create-challenge">
+                                Create invitation ↗
+                            </button>
+<button class="primary wide" hidden="" id="join-challenge">
+                                Accept invitation
+                            </button>
+<button class="wide" hidden="" id="another-invitation">
+                                Create another invitation
+                            </button>
+<div hidden="" id="share-box">
+<label>
+                                    Invitation link
+                                    <input id="share-link" readonly=""/>
+</label>
+<div class="button-row">
+<button id="copy-invite">Copy invitation</button>
+<button id="copy-spectator">Spectator link</button>
+</div>
+</div>
+<p class="micro" id="online-help">
+                                Choose your colour and clock in Game setup, then invite a
+                                friend.
+                            </p>
+</div>
+<div class="online-panel" hidden="" id="puzzle-panel">
+<div class="button-row">
+<label>
+                                    Min rating
+                                    <input id="puzzle-min" max="4000" min="0" type="number" value="0"/>
+</label>
+<label>
+                                    Max rating
+                                    <input id="puzzle-max" max="4000" min="0" type="number" value="3000"/>
+</label>
+</div>
+<label>
+                                Theme
+                                <select id="puzzle-theme">
+<option value="">All themes</option>
+</select>
+</label>
+<div class="button-row">
+<button id="puzzle-hint">Hint</button>
+<button id="puzzle-reveal">Reveal</button>
+<button class="primary" id="puzzle-next">Next →</button>
+</div>
+<button class="wide" id="puzzle-retry">
+                                Retry puzzle
+                            </button>
+<label class="file-label">
+                                Import Lichess puzzle CSV
+                                <input accept=".csv" id="puzzle-file" type="file"/>
+</label>
+<p class="micro" id="puzzle-detail"></p>
+</div>
+</aside>
+</div>
+</section>
+<div class="toast" hidden="" id="toast" role="status"></div>
+<nav aria-label="Project credits" class="jc-page-credits"><a href="THIRD-PARTY-NOTICES.md">Credits</a>
+<a download="" href="stockfish/stockfish-source.tar.gz">
+                        Engine source
+                    </a>
+</nav></main>
+<dialog id="promotion-dialog">
+<h2>Choose your promotion</h2>
+<p>Your clock keeps running until you choose.</p>
+<div class="promotion-options" id="promotion-options"></div>
+<button id="promotion-cancel">Cancel</button>
+</dialog>
+<dialog id="confirm-dialog">
+<h2 id="confirm-title">Start a new game?</h2>
+<p id="confirm-description"></p>
+<div class="button-row">
+<button id="confirm-no">Cancel</button>
+<button class="primary" id="confirm-yes">Continue</button>
+</div>
+</dialog>
+<script src="vendor/socket.io.min.js"></script><script src="js/app.js?v=copper-1" type="module"></script><footer class="copper-footer"><a href="/">Jenga-Code</a><span>Independent software by George Miller.</span><a href="/apps/">All applications</a><a href="/privacy/">Privacy</a></footer>
+</body>
+</html>
